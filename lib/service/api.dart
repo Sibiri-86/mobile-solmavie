@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class Api {
-  static const endpoint = 'http://192.168.59.153:9090/assurance';
+  static const endpoint = 'http://10.0.2.2:9090/assurance';
   var client = new http.Client();
   Future<Adherent> getUserProfile(String  numero) async {
     print("===========numero=====================");

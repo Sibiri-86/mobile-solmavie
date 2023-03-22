@@ -28,7 +28,7 @@ Future<Credential> authenticate(Client client, BuildContext context,
   // create a function to open a browser with an url
   urlLauncher(String url) async {
     var uri = Uri.parse(url);
-
+print("=====================url============="+url);
 
     if ( Platform.isAndroid) {
      /* await launch(url,
@@ -43,7 +43,7 @@ Future<Credential> authenticate(Client client, BuildContext context,
   }
 
   var authenticator = io.Authenticator(client,
-      scopes: scopes, port: 3000,redirectUri: Uri.parse('http://192.168.59.153:3000'), urlLancher: urlLauncher);
+      scopes: scopes, port: 3000,redirectUri: Uri.parse('http://localhost:3000'), urlLancher: urlLauncher);
 
   var c = await authenticator.authorize();
    credential = c;
