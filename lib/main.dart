@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
             future:authenticate(client.requireData,context, scopes: scopes),
             builder: (context ,AsyncSnapshot<Credential> datas) {
 
-
+             
               if(datas.hasData) {
                 _api.getUserProfile("1");
                 return  buitApp(NavigationHomeScreen());
@@ -108,7 +108,7 @@ class MyApp extends StatelessWidget {
 MaterialApp buitApp(Widget elem){
   return MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Solmavie',
+    title: 'Solmavi',
     home: elem,
 
   );

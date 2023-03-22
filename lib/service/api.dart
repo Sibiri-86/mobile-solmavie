@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:best_flutter_ui_templates/model/adherent.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +12,7 @@ class Api {
   Future<Adherent> getUserProfile(String  numero) async {
     print("===========numero=====================");
 
-    var response = await client.get(Uri.parse('$endpoint/contrat/adherent/getByNumero-adherent/${numero}'));
+    var response = await client.get(Uri.parse('$endpoint/contrat/adherent/getAssureByNumero-adherent'));
     print("===========numero======2===============");
     print(response.body);
 

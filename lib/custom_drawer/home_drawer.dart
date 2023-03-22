@@ -33,12 +33,17 @@ class _HomeDrawerState extends State<HomeDrawer> {
         icon: Icon(Icons.home),
       ),
       DrawerList(
+        index: DrawerIndex.Assure,
+        labelName: 'Consom. Assuré',
+        icon: Icon(Icons.person),
+      ),
+      DrawerList(
         index: DrawerIndex.Help,
         labelName: 'Help',
         isAssetsImage: true,
         imageName: 'assets/images/supportIcon.png',
       ),
-      DrawerList(
+      /**DrawerList(
         index: DrawerIndex.FeedBack,
         labelName: 'FeedBack',
         icon: Icon(Icons.help),
@@ -57,7 +62,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
         index: DrawerIndex.About,
         labelName: 'About Us',
         icon: Icon(Icons.info),
-      ),
+      ),*/
     ];
   }
 
@@ -302,6 +307,7 @@ enum DrawerIndex {
   About,
   Invite,
   Testing,
+  Assure,
 }
 
 class DrawerList {
