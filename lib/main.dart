@@ -1,18 +1,23 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'package:best_flutter_ui_templates/app_theme.dart';
 import 'package:best_flutter_ui_templates/imageVimso.dart';
+import 'package:best_flutter_ui_templates/locator.dart';
+import 'package:best_flutter_ui_templates/model/adherent.dart';
 import 'package:best_flutter_ui_templates/openid_io.dart';
+import 'package:best_flutter_ui_templates/service/Api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'navigation_home_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:openid_client/openid_client_io.dart' if (dart.library.html) 'openid_browser.dart';
-const keycloakUri = 'http://localhost:8080/auth/realms/Vimso';
+const keycloakUri = 'http://192.168.59.153:8080/auth/realms/Vimso';
 const scopes = ['profile'];
 
 Credential? credential;
 late final Client client;
+final Api _api = locator<Api>();
 Future<Client> getClient() async {
   var uri = Uri.parse(keycloakUri);
   if (!kIsWeb && Platform.isAndroid) uri = uri.replace(host: '10.0.2.2');
@@ -22,6 +27,7 @@ Future<Client> getClient() async {
   return Client(issuer, clientId);
 }
 void main() async {
+  setupLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
@@ -51,10 +57,26 @@ class MyApp extends StatelessWidget {
             future:authenticate(client.requireData,context, scopes: scopes),
             builder: (context ,AsyncSnapshot<Credential> datas) {
 
-
+             
               if(datas.hasData) {
-
+                _api.getUserProfile("1");
                 return  buitApp(NavigationHomeScreen());
+                 /* return FutureBuilder(
+                  future:_api.getUserProfile("1"),
+                  builder: (context ,AsyncSnapshot<Adherent> adh) {
+                    if(adh.hasData) {
+                      print("============adh===========");
+                      print("============adh===========");
+                      return  buitApp(NavigationHomeScreen());
+                    } else {
+                      return buitApp(Feed());
+                    }
+
+                  }
+                  );*/
+
+
+
 
 
               } else {

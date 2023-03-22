@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:best_flutter_ui_templates/locator.dart';
+import 'package:best_flutter_ui_templates/service/Api.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:openid_client/openid_client.dart';
@@ -8,7 +10,7 @@ import 'package:openid_client/openid_client_io.dart' as io;
 
 late Credential  credential;
 late Client  client;
-
+final _api = locator<Api>();
 Future<Credential> authenticate(Client client, BuildContext context,
     {List<String> scopes = const []}) async {
 
