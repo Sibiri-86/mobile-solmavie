@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:best_flutter_ui_templates/locator.dart';
+import 'package:best_flutter_ui_templates/service/Api.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:openid_client/openid_client.dart';
@@ -8,7 +10,7 @@ import 'package:openid_client/openid_client_io.dart' as io;
 
 late Credential  credential;
 late Client  client;
-
+final _api = locator<Api>();
 Future<Credential> authenticate(Client client, BuildContext context,
     {List<String> scopes = const []}) async {
 
@@ -41,7 +43,7 @@ Future<Credential> authenticate(Client client, BuildContext context,
   }
 
   var authenticator = io.Authenticator(client,
-      scopes: scopes, port: 3000,redirectUri: Uri.parse('http://localhost:3000'), urlLancher: urlLauncher);
+      scopes: scopes, port: 3000,redirectUri: Uri.parse('http://192.168.59.153:3000'), urlLancher: urlLauncher);
 
   var c = await authenticator.authorize();
    credential = c;
