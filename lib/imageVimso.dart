@@ -10,7 +10,7 @@ class Feed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Solmavi',
+        title: 'SOLMAVI',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -19,7 +19,7 @@ class Feed extends StatelessWidget {
           seconds: 100,
           //navigateAfterSeconds:MyApp(),
           title: new Text(
-            'Solmavi',
+            'SOLMAVI',
             style: new TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20.0,

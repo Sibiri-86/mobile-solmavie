@@ -86,7 +86,7 @@ class MyApp extends StatelessWidget {
 MaterialApp buitApp(Widget elem){
   return MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Solmavie',
+    title: 'Solmavi',
     home: elem,
 
   );
