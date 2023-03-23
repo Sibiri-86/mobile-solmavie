@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:best_flutter_ui_templates/locator.dart';
@@ -46,11 +47,23 @@ print("=====================url============="+url);
       scopes: scopes, port: 3000,redirectUri: Uri.parse('http://localhost:3000'), urlLancher: urlLauncher);
 
   var c = await authenticator.authorize();
+  print("=========idToken===1============");
+  print(c.toJson());
+  c.getTokenResponse(true).then((value) => {
+  print("=========idToken===2============"),
+  _api.getUserProfile("1"),
+  print(value),
+  });
+
+
+  print("==============idToken==========");
    credential = c;
+
    if (Platform.isAndroid || Platform.isIOS) {
      await closeInAppWebView();
 
   }
+
 
 
   return c;

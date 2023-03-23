@@ -1,21 +1,20 @@
 import 'dart:convert';
-import 'dart:ffi';
+import 'dart:io';
 
 import 'package:best_flutter_ui_templates/model/adherent.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:openid_client/openid_client.dart';
 
 @lazySingleton
 class Api {
-  static const endpoint = 'http://10.0.2.2:9090/assurance';
+  static const endpoint = 'http://192.168.59.153:9090/assurance';
   var client = new http.Client();
   Future<Adherent> getUserProfile(String  numero) async {
-    print("===========numero=====================");
 
-    var response = await client.get(Uri.parse('$endpoint/contrat/adherent/getAssureByNumero-adherent'));
+    var response = await client.get(Uri.parse('$endpoint/contrat/adherent/getByNumero-adherent'));
     print("===========numero======2===============");
-    print(response.body);
-
+    print(response.statusCode);
     print("===========numero======2===============");
     return Adherent.fromJson(json.decode(response.body));
   }

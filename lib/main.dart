@@ -56,10 +56,10 @@ class MyApp extends StatelessWidget {
           return FutureBuilder(
             future:authenticate(client.requireData,context, scopes: scopes),
             builder: (context ,AsyncSnapshot<Credential> datas) {
+              print("=====================url=============");
 
-             
               if(datas.hasData) {
-                _api.getUserProfile("1");
+              //  _api.getUserProfile("1");
                 return  buitApp(NavigationHomeScreen());
                  /* return FutureBuilder(
                   future:_api.getUserProfile("1"),
