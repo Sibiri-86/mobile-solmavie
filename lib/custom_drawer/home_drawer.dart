@@ -1,11 +1,20 @@
+import 'dart:convert';
+
 import 'package:best_flutter_ui_templates/app_theme.dart';
+import 'package:best_flutter_ui_templates/locator.dart';
+import 'package:best_flutter_ui_templates/model/adherent.dart';
+import 'package:best_flutter_ui_templates/service/Api.dart';
 import 'package:flutter/material.dart';
 
+import '../openid_io.dart';
+
+final Api _api = locator<Api>();
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
       {Key? key,
       this.screenIndex,
       this.iconAnimationController,
+       // this.adherent,
       this.callBackIndex})
       : super(key: key);
 
@@ -13,16 +22,39 @@ class HomeDrawer extends StatefulWidget {
   final DrawerIndex? screenIndex;
   final Function(DrawerIndex)? callBackIndex;
 
+
   @override
   _HomeDrawerState createState() => _HomeDrawerState();
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
   List<DrawerList>? drawerList;
+  Adherent? adherent;
   @override
   void initState() {
     setDrawerListArray();
+    findAdherent();
     super.initState();
+  }
+
+  Future<void> findAdherent() async {
+
+      print("===============user=========2====");
+      print("===============user=========2====");
+      print("===============adherent=========1====");
+      final reponse = await _api.getUserProfile("5");
+      print("===============adherent=========2====");
+      if(reponse != null) {
+        setState(() {
+          adherent = reponse;
+          print("===============adherent=============");
+          print(adherent!.nom);
+          print("=============adherent===============");
+        });
+      }
+
+
+      //final garantie = _api.getGarantie();
   }
 
   void setDrawerListArray() {
@@ -88,6 +120,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   AnimatedBuilder(
                     animation: widget.iconAnimationController!,
                     builder: (BuildContext context, Widget? child) {
+
                       return ScaleTransition(
                         scale: AlwaysStoppedAnimation<double>(1.0 -
                             (widget.iconAnimationController!.value) * 0.2),
@@ -114,17 +147,22 @@ class _HomeDrawerState extends State<HomeDrawer> {
                             child: ClipRRect(
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(60.0)),
-                              child: Image.asset('assets/images/userImage.png'),
+                              child: Image.network('http://192.168.59.252:92/images/6373a8ee1f19a15e185188ad1.jpg'),
+                              //child: Image.asset('assets/images/userImage.png'),
                             ),
                           ),
                         ),
                       );
                     },
                   ),
+
                   Padding(
+
                     padding: const EdgeInsets.only(top: 8, left: 4),
-                    child: Text(
-                      'Chris Hemsworth',
+
+                    child:  Text(
+
+                      adherent!.nom+adherent!.prenom,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: isLightMode ? AppTheme.grey : AppTheme.white,

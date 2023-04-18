@@ -9,6 +9,8 @@ import 'package:openid_client/openid_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:openid_client/openid_client_io.dart' as io;
 
+
+late final UserInfo userInfo;
 late Credential  credential;
 late Client  client;
 final _api = locator<Api>();
@@ -47,18 +49,11 @@ print("=====================url============="+url);
       scopes: scopes, port: 3000,redirectUri: Uri.parse('http://localhost:3000'), urlLancher: urlLauncher);
 
   var c = await authenticator.authorize();
-  print("=========idToken===1============");
-  print(c.toJson());
-  c.getTokenResponse(true).then((value) => {
-  print("=========idToken===2============"),
-  _api.getUserProfile("1"),
-  print(value),
-  });
+
 
 
   print("==============idToken==========");
    credential = c;
-
    if (Platform.isAndroid || Platform.isIOS) {
      await closeInAppWebView();
 

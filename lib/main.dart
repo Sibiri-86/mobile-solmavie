@@ -12,12 +12,13 @@ import 'package:splashscreen/splashscreen.dart';
 import 'navigation_home_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:openid_client/openid_client_io.dart' if (dart.library.html) 'openid_browser.dart';
-const keycloakUri = 'http://localhost:8080/auth/realms/Vimso';
+const keycloakUri = 'http://192.168.1.89:8080/auth/realms/Vimso';
 const scopes = ['profile'];
 
 Credential? credential;
 late final Client client;
 final Api _api = locator<Api>();
+
 Future<Client> getClient() async {
   var uri = Uri.parse(keycloakUri);
   if (!kIsWeb && Platform.isAndroid) uri = uri.replace(host: '10.0.2.2');
@@ -56,10 +57,12 @@ class MyApp extends StatelessWidget {
           return FutureBuilder(
             future:authenticate(client.requireData,context, scopes: scopes),
             builder: (context ,AsyncSnapshot<Credential> datas) {
-              print("=====================url=============");
+              print("=====================url=======1======");
 
               if(datas.hasData) {
-              //  _api.getUserProfile("1");
+                // _api.;
+               _api.getUserProfile("1");
+                //_api.findBareme();
                 return  buitApp(NavigationHomeScreen());
                  /* return FutureBuilder(
                   future:_api.getUserProfile("1"),

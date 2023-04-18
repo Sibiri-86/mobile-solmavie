@@ -1,4 +1,4 @@
 class Constant  {
-  static final String url ="http://localhost:9090/";
+  static const endpoint = 'http://192.168.59.252:9090/assurance';
  // SERVICE_PREFIX = `/assurance`
 }
