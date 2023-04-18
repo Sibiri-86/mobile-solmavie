@@ -5,6 +5,8 @@ import 'package:best_flutter_ui_templates/feedback_screen.dart';
 import 'package:best_flutter_ui_templates/help_screen.dart';
 import 'package:best_flutter_ui_templates/home_screen.dart';
 import 'package:best_flutter_ui_templates/invite_friend_screen.dart';
+import 'package:best_flutter_ui_templates/views/actes_entente_prealable_screen.dart';
+import 'package:best_flutter_ui_templates/views/reseau_soins_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'views/consom_assure_screen.dart';
@@ -37,9 +39,8 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
           backgroundColor: AppTheme.nearlyWhite,
           body: DrawerUserController(
 
-
             screenIndex: drawerIndex,
-            drawerWidth: MediaQuery.of(context).size.width * 0.75,
+            //drawerWidth: MediaQuery.of(context).size.width * 0.75,
             onDrawerCall: (DrawerIndex drawerIndexdata) {
               changeIndex(drawerIndexdata);
               //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
@@ -61,6 +62,21 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
             screenView = const MyHomePage();
           });
           break;
+        case DrawerIndex.Assure:
+          setState(() {
+            screenView = ConsomAssure();
+          });
+          break;
+        case DrawerIndex.Reseau:
+          setState(() {
+            screenView = ReseauSoin();
+          });
+          break;
+        case DrawerIndex.Entente:
+          setState(() {
+            screenView = EntentePrealable();
+          });
+          break;
         case DrawerIndex.Help:
           setState(() {
             screenView = HelpScreen();
@@ -74,11 +90,6 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         case DrawerIndex.Invite:
           setState(() {
             screenView = InviteFriend();
-          });
-          break;
-        case DrawerIndex.Assure:
-          setState(() {
-            screenView = ConsomAssure();
           });
           break;
         default:

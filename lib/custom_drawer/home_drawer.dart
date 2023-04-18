@@ -34,8 +34,18 @@ class _HomeDrawerState extends State<HomeDrawer> {
       ),
       DrawerList(
         index: DrawerIndex.Assure,
-        labelName: 'Consom. Assuré',
+        labelName: 'Préfinancements',
         icon: Icon(Icons.person),
+      ),
+      DrawerList(
+        index: DrawerIndex.Reseau,
+        labelName: 'Réseau des soins',
+        icon: Icon(Icons.network_wifi),
+      ),
+      DrawerList(
+        index: DrawerIndex.Entente,
+        labelName: 'Entente Préalable',
+        icon: Icon(Icons.accessibility),
       ),
       DrawerList(
         index: DrawerIndex.Help,
@@ -134,6 +144,11 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   ),
                 ],
               ),
+            ),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.green, Colors.yellow]
+                )
             ),
           ),
           const SizedBox(
@@ -301,13 +316,15 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
 enum DrawerIndex {
   HOME,
+  Assure,
+  Reseau,
+  Entente,
   FeedBack,
   Help,
   Share,
   About,
   Invite,
-  Testing,
-  Assure,
+  Testing
 }
 
 class DrawerList {

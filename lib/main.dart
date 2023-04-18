@@ -12,7 +12,8 @@ import 'package:splashscreen/splashscreen.dart';
 import 'navigation_home_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:openid_client/openid_client_io.dart' if (dart.library.html) 'openid_browser.dart';
-const keycloakUri = 'http://192.168.59.153:8080/auth/realms/Vimso';
+const keycloakUri = 'http://192.168.59.142:8080/auth/realms/Vimso';
+//const keycloakUri = 'http://192.168.1.88:8080/auth/realms/Vimso';
 const scopes = ['profile'];
 
 Credential? credential;
@@ -57,9 +58,10 @@ class MyApp extends StatelessWidget {
             future:authenticate(client.requireData,context, scopes: scopes),
             builder: (context ,AsyncSnapshot<Credential> datas) {
 
-             
+
               if(datas.hasData) {
-                _api.getUserProfile("1");
+                _api.getUserProfile("4");
+                //_api.getPrefinancement("4");
                 return  buitApp(NavigationHomeScreen());
                  /* return FutureBuilder(
                   future:_api.getUserProfile("1"),
@@ -107,6 +109,10 @@ class MyApp extends StatelessWidget {
 }
 MaterialApp buitApp(Widget elem){
   return MaterialApp(
+    theme: ThemeData(
+      primarySwatch: Colors.green,
+
+    ),
     debugShowCheckedModeBanner: false,
     title: 'Solmavi',
     home: elem,

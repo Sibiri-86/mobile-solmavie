@@ -28,6 +28,7 @@ Future<Credential> authenticate(Client client, BuildContext context,
   // create a function to open a browser with an url
   urlLauncher(String url) async {
     var uri = Uri.parse(url);
+    print("===========URLLLLLL================"+url);
 
 
     if ( Platform.isAndroid) {
