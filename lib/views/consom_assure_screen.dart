@@ -1,7 +1,4 @@
-import 'dart:convert';
 
-import 'package:best_flutter_ui_templates/app_theme.dart';
-import 'package:best_flutter_ui_templates/fitness_app/ui_view/title_view.dart';
 import 'package:best_flutter_ui_templates/model/prefinancement.dart';
 import 'package:best_flutter_ui_templates/service/api.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +30,10 @@ class _ConsomAssureState extends State<ConsomAssure> {
       appBar: AppBar(
         foregroundColor: Colors.yellow,
         title: Text('Préfinancements => ${_prefinancements.length}'),
+        bottom: PreferredSize(
+            child: Text("Liste des préfinancements",
+                style: TextStyle(color: Colors.yellow, fontWeight: FontWeight.bold)),
+            preferredSize: Size.zero),
         centerTitle: true,
         backgroundColor: Colors.green,
       ),
@@ -144,10 +145,9 @@ class _ConsomAssureState extends State<ConsomAssure> {
           ),
         ),
       ),
+      backgroundColor: Colors.grey[300],
     );
   }
-
-
 
   @override
   void initState() {
@@ -161,18 +161,4 @@ class _ConsomAssureState extends State<ConsomAssure> {
     print("ooonjnhbgbgvvgbgfvfvgooo");
   }
 
-
-  /*Future<List<Prefinancement>> getPrefinancement(String adherentId) async {
-    var prefinancements = <Prefinancement>[];
-    var response = await client.put(Uri.parse('$endpoint/portail/assureConsommation-sinistre-and-famille-for-mobile/${adherentId="4"}'));
-    var pref = <Prefinancement>[];
-    if(response.statusCode == 200) {
-      var prefsJson = json.decode(response.body);
-      for (var prefJson in prefsJson) {
-        pref.add(Prefinancement.fromJson(prefJson));
-      }
-    }
-    return pref;
-
-  }*/
 }

@@ -48,6 +48,11 @@ class _HomeDrawerState extends State<HomeDrawer> {
         icon: Icon(Icons.accessibility),
       ),
       DrawerList(
+        index: DrawerIndex.Exclusions,
+        labelName: 'Exclusion/Rachat',
+        icon: Icon(Icons.ac_unit),
+      ),
+      DrawerList(
         index: DrawerIndex.Help,
         labelName: 'Help',
         isAssetsImage: true,
@@ -319,6 +324,7 @@ enum DrawerIndex {
   Assure,
   Reseau,
   Entente,
+  Exclusions,
   FeedBack,
   Help,
   Share,

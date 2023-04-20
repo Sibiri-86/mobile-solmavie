@@ -6,6 +6,7 @@ import 'package:best_flutter_ui_templates/help_screen.dart';
 import 'package:best_flutter_ui_templates/home_screen.dart';
 import 'package:best_flutter_ui_templates/invite_friend_screen.dart';
 import 'package:best_flutter_ui_templates/views/actes_entente_prealable_screen.dart';
+import 'package:best_flutter_ui_templates/views/exclusions.dart';
 import 'package:best_flutter_ui_templates/views/reseau_soins_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -75,6 +76,11 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         case DrawerIndex.Entente:
           setState(() {
             screenView = EntentePrealable();
+          });
+          break;
+        case DrawerIndex.Exclusions:
+          setState(() {
+            screenView = ProduitExclus();
           });
           break;
         case DrawerIndex.Help:

@@ -1,19 +1,19 @@
-import 'package:best_flutter_ui_templates/model/prestataire.dart';
-import 'package:best_flutter_ui_templates/service/api.dart';
+import 'package:best_flutter_ui_templates/model/produit_exclu.dart';
 import 'package:flutter/material.dart';
 
+import '../service/api.dart';
 
 
-
-class ReseauSoin extends StatefulWidget {
-  const ReseauSoin({Key? key}) : super(key: key);
+class ProduitExcluExclu extends StatefulWidget {
+  const ProduitExcluExclu({Key? key}) : super(key: key);
 
   @override
-  State<ReseauSoin> createState() => _ReseauSoinState();
+  State<ProduitExcluExclu> createState() => _ProduitExcluExcluState();
 }
 
-class _ReseauSoinState extends State<ReseauSoin> {
-  List<Prestataire> _prefstataires = <Prestataire>[];
+class _ProduitExcluExcluState extends State<ProduitExcluExclu> {
+
+  List<ProduitExclu> _produitExclus = <ProduitExclu>[];
   TextEditingController queryTextEditingController = new TextEditingController();
   String query = '';
   @override
@@ -21,9 +21,9 @@ class _ReseauSoinState extends State<ReseauSoin> {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.yellow,
-        title: Text('Réseau des soins => ${_prefstataires.length}'),
+        title: Text('Produit(s) Exclu(s)'),
         bottom: PreferredSize(
-            child: Text("Réseau des prestataires de VIMSO",
+            child: Text("Liste des produits exclus du la police",
                 style: TextStyle(color: Colors.yellow, fontWeight: FontWeight.bold)),
             preferredSize: Size.zero),
         centerTitle: true,
@@ -93,40 +93,40 @@ class _ReseauSoinState extends State<ReseauSoin> {
                   padding: EdgeInsets.only(top: 10),
                   margin: EdgeInsets.only(top: 5),
                   decoration: BoxDecoration(color: Colors.green[200], borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.black)),
-                  child: _prefstataires.isEmpty ?
+                      border: Border.all(color: Colors.black)),
+                  child: _produitExclus.isEmpty ?
                   Center( child: CircularProgressIndicator(color: Colors.yellow,)): ListView.builder(
-                      itemCount: _prefstataires.length,
+                      itemCount: _produitExclus.length,
                       itemBuilder: (context, index) {
                         return Card(
                           shadowColor: Colors.lightGreen,
                           color: Colors.green[500],
                           shape: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                            child: ListTile(
-                                title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 25,
-                                          backgroundColor: Colors.lightGreen,
-                                          child: Text(_prefstataires[index].code,
-                                            style: TextStyle(fontSize: 10, color: Colors.black, fontWeight: FontWeight.bold),),
-                                        ),
-                                        SizedBox(width: 2,),
-                                        Text(_prefstataires[index].libelle.toUpperCase(),
-                                          style: TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold),)
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                subtitle: _prefstataires[index].telephone==null ?
-                                Center( child: Text('NON RENSEIGNE', style: TextStyle(fontSize: 10, color: Colors.amber, fontWeight: FontWeight.bold))) : Center(
-                                  child: Text("Téléphone: "+_prefstataires[index].telephone,
-                                    style: TextStyle(fontSize: 12, color: Colors.amber, fontWeight: FontWeight.bold),),
-                                )
-                            ),
+                          child: ListTile(
+                              title: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 25,
+                                        backgroundColor: Colors.lightGreen,
+                                        child: Text(_produitExclus[index].code,
+                                          style: TextStyle(fontSize: 10, color: Colors.black, fontWeight: FontWeight.bold),),
+                                      ),
+                                      SizedBox(width: 2,),
+                                      Text(_produitExclus[index].libelle.toUpperCase(),
+                                        style: TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold),)
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              subtitle: _produitExclus[index].typeProduit==null ?
+                              Center( child: Text('NON RENSEIGNE', style: TextStyle(fontSize: 10, color: Colors.amber, fontWeight: FontWeight.bold))) : Center(
+                                child: Text("Type: "+_produitExclus[index].typeProduit,
+                                  style: TextStyle(fontSize: 12, color: Colors.amber, fontWeight: FontWeight.bold),),
+                              )
+                          ),
                         );
                       }
                   ),
@@ -136,16 +136,18 @@ class _ReseauSoinState extends State<ReseauSoin> {
           ),
         ),
       ),
+      //backgroundColor: Colors.grey[300],
     );
   }
+
   @override
   void initState() {
     super.initState();
     print("oooooooooooooooooooooooooo");
-    api.getPrestataire().then((value) {
+    api.getProduitExclus(4).then((value) {
       setState(() {
-        _prefstataires.addAll(value);
-        print(_prefstataires.length);
+        _produitExclus.addAll(value);
+        print(_produitExclus.length);
       });
     });
     print("ooonjnhbgbgvvgbgfvfvgooo");

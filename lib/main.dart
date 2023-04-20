@@ -130,3 +130,9 @@ class HexColor extends Color {
     return int.parse(hexColor, radix: 16);
   }
 }
+
+/*decoration: BoxDecoration(
+gradient: LinearGradient(
+colors: [Colors.green, Colors.yellow]
+)
+),*/

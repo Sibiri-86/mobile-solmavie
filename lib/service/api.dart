@@ -3,8 +3,10 @@ import 'dart:ffi';
 
 import 'package:best_flutter_ui_templates/constant.dart';
 import 'package:best_flutter_ui_templates/model/adherent.dart';
+import 'package:best_flutter_ui_templates/model/entente_prealable.dart';
 import 'package:best_flutter_ui_templates/model/prefinancement.dart';
 import 'package:best_flutter_ui_templates/model/prestataire.dart';
+import 'package:best_flutter_ui_templates/model/produit_exclu.dart';
 import 'package:best_flutter_ui_templates/service/Api.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
@@ -43,7 +45,6 @@ class Api {
 
   }*/
 
-  List<Prefinancement> _prefinancements = <Prefinancement>[];
   Future<List<Prefinancement>> getPrefinancement(String adherentId) async {
     print("=======id: "+adherentId);
     var response = await client.put(Uri.parse(EndPoint.GET_PREFINANCEMENT_URL+'/${adherentId}'));
@@ -74,6 +75,54 @@ class Api {
     print(prestataire.length);
     return prestataire;
 
+  }
+
+  Future<List<Entente>> getEntentePrealable() async {
+    var response = await client.get(Uri.parse(EndPoint.GET_ACTES_ENTENTE_PREALABLE_URL));
+    print("=======endpoint: "+ EndPoint.GET_ACTES_ENTENTE_PREALABLE_URL);
+    var entente = <Entente>[];
+    //if(response.statusCode == 200) {
+    var prefsJson = json.decode(response.body);
+    for (var prefJson in prefsJson) {
+      entente.add(Entente.fromJson(prefJson));
+    }
+    //}
+    print("=======entente");
+    print(entente.length);
+    return entente;
+
+  }
+
+  Future<List<ProduitExclu>> getProduitExclus(int numero) async {
+    var response = await client.get(Uri.parse(EndPoint.GET_PRODUIT_EXCLU_URL+'?numero=${numero}'));
+    print("=======endpoint: "+ EndPoint.GET_PRODUIT_EXCLU_URL+'/${numero}');
+    var produitExclu = <ProduitExclu>[];
+    //if(response.statusCode == 200) {
+    print(response.body);
+    var prefsJson = json.decode(response.body);
+    print(prefsJson);
+    for (var prefJson in prefsJson) {
+      produitExclu.add(ProduitExclu.fromJson(prefJson));
+    }
+    //}
+    print("=======produitExclu");
+    print(produitExclu.length);
+    return produitExclu;
+  }
+
+  Future<List<ProduitExclu>> getProduitRachetes(int numero) async {
+    var response = await client.get(Uri.parse(EndPoint.GET_PRODUIT_RACHETE_URL));
+    print("=======endpoint: "+ EndPoint.GET_PRODUIT_RACHETE_URL);
+    var produitRachete = <ProduitExclu>[];
+    //if(response.statusCode == 200) {
+    var prefsJson = json.decode(response.body);
+    for (var prefJson in prefsJson) {
+      produitRachete.add(ProduitExclu.fromJson(prefJson));
+    }
+    //}
+    print("=======produit");
+    print(produitRachete.length);
+    return produitRachete;
   }
 
  /* Future<List<Post>> getPostsForUser(int userId) async {
