@@ -33,11 +33,11 @@ class _HomeDrawerState extends State<HomeDrawer> {
   @override
   void initState() {
     setDrawerListArray();
-    findAdherent();
+    // findAdherent();
     super.initState();
   }
 
-  Future<void> findAdherent() async {
+  /*Future<void> findAdherent() async {
 
       print("===============user=========2====");
       print("===============user=========2====");
@@ -55,7 +55,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
 
       //final garantie = _api.getGarantie();
-  }
+  }*/
 
   void setDrawerListArray() {
     drawerList = <DrawerList>[

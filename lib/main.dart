@@ -12,8 +12,8 @@ import 'package:splashscreen/splashscreen.dart';
 import 'navigation_home_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:openid_client/openid_client_io.dart' if (dart.library.html) 'openid_browser.dart';
-const keycloakUri = 'http://192.168.1.89:8080/auth/realms/Vimso';
-const scopes = ['profile'];
+const keycloakUri = 'http://192.168.112.245:8080/auth/realms/Vimso';
+const scopes = ['openid'];
 
 Credential? credential;
 late final Client client;
