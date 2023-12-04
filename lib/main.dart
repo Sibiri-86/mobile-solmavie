@@ -12,8 +12,10 @@ import 'package:splashscreen/splashscreen.dart';
 import 'navigation_home_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:openid_client/openid_client_io.dart' if (dart.library.html) 'openid_browser.dart';
-const keycloakUri = 'http://192.168.112.245:8080/auth/realms/Vimso';
-const scopes = ['openid'];
+
+const keycloakUri = 'http://192.168.59.142:8080/auth/realms/Vimso';
+//const keycloakUri = 'http://192.168.1.88:8080/auth/realms/Vimso';
+const scopes = ['profile'];
 
 Credential? credential;
 late final Client client;
@@ -110,6 +112,10 @@ class MyApp extends StatelessWidget {
 }
 MaterialApp buitApp(Widget elem){
   return MaterialApp(
+    theme: ThemeData(
+      primarySwatch: Colors.green,
+
+    ),
     debugShowCheckedModeBanner: false,
     title: 'Solmavi',
     home: elem,
@@ -127,3 +133,9 @@ class HexColor extends Color {
     return int.parse(hexColor, radix: 16);
   }
 }
+
+/*decoration: BoxDecoration(
+gradient: LinearGradient(
+colors: [Colors.green, Colors.yellow]
+)
+),*/

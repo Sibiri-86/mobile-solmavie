@@ -29,4 +29,8 @@ class Adherent {
     data['urlPhoto'] = this.urlPhoto;
     return data;
   }
+
+
+
+  Adherent();
 }
